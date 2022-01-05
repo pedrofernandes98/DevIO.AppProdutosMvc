@@ -2,7 +2,7 @@
 
 namespace DevIO.Business.Models
 {
-    public class Produto
+    public class Produto : Entity
     {
         //Foreign key
         public Guid FornecedorId { get; set; }
