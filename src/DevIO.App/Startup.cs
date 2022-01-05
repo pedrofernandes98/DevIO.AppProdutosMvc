@@ -42,6 +42,10 @@ namespace DevIO.App
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //AutoMapper
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllersWithViews();
 
             //EFCore
