@@ -2,7 +2,7 @@
 
 namespace DevIO.App.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
     }
 }

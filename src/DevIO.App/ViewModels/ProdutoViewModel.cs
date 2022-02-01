@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -40,5 +41,8 @@ namespace DevIO.App.ViewModels
 
         //EF Releations -> Propriedades de navegação
         public FornecedorViewModel Fornecedor { get; set; }
+
+        //Caso queira editar o Fornecedor, esta propriedade já estará carregada com os fornecedores disponíveis
+        public IEnumerable<FornecedorViewModel> Fornecedores { get; set; }
     }
 }
