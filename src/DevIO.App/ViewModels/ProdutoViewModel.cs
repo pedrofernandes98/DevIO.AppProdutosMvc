@@ -26,6 +26,7 @@ namespace DevIO.App.ViewModels
         public string Descricao { get; set; }
 
         //Upload de arquivo
+        [DisplayName("Imagem")]
         public IFormFile ImagemUpload { get; set; }
 
         public string Imagem { get; set; }
