@@ -99,12 +99,34 @@ namespace DevIO.App.Controllers
             if (id != produtoViewModel.Id)
                 return NotFound();
 
+            var produtoAtualizado = await ObterProduto(id);
+            produtoViewModel.Fornecedor = produtoAtualizado.Fornecedor;
+            produtoViewModel.Imagem = produtoAtualizado.Imagem;
+
             if (!ModelState.IsValid)
             {
                 return View(produtoViewModel);
             }
 
-            await _repository.Edit(_mapper.Map<Produto>(produtoViewModel));
+            if(produtoViewModel.ImagemUpload != null)
+            {
+                var prefix = Guid.NewGuid() + "_";
+
+                if (!await ImagemUpload(produtoViewModel.ImagemUpload, prefix) ||
+                    !DeletarImagem(produtoViewModel.Imagem))
+                {
+                    return View(produtoViewModel);
+                }
+ 
+                produtoAtualizado.Imagem = prefix + produtoViewModel.ImagemUpload.FileName;
+            }
+
+            produtoAtualizado.Nome = produtoViewModel.Nome;
+            produtoAtualizado.Descricao = produtoViewModel.Descricao;
+            produtoAtualizado.Valor = produtoViewModel.Valor;
+            produtoAtualizado.Ativo = produtoViewModel.Ativo;
+
+            await _repository.Edit(_mapper.Map<Produto>(produtoAtualizado));
 
             return RedirectToAction(nameof(Index));
         }
@@ -169,5 +191,17 @@ namespace DevIO.App.Controllers
             return true;
         }
 
+        private bool DeletarImagem(string fileName)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

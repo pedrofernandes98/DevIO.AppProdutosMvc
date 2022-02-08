@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\5010d1c8-d130-4785-a7eb-a158a00190ac_Xbox-One.jpg" />
+    <Content Remove="wwwroot\img\7bad0446-43f0-4ad9-ad28-5967508263a6_Xbox-One.jpg" />
+    <Content Remove="wwwroot\img\90d1e353-5526-4cf0-bf3f-5d286a114809_escudo-cruzeiro.png" />
+    <Content Remove="wwwroot\img\b156bef4-a1df-42ae-a203-0357a7b992da_escudo-cruzeiro.png" />
+    <Content Remove="wwwroot\img\eb42f04e-b0cb-4473-9659-2a54a3a43304_Xbox-One.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.12" />
